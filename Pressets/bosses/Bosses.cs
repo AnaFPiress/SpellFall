@@ -40,14 +40,14 @@ private bool lockAttack = false;
     private IEnumerator AttackDelay()
     {
         if (animator != null) animator.SetTrigger("Attack");
-        yield return new WaitForSeconds(1.5f);
-        player.TakeDamage(damage);
         yield return new WaitForSeconds(AttackInterval / 2f);
         if (spawners.Length != 0){
             foreach(ProjetilSpawner s in spawners){
                 s.SpawnProjetil();
             }
         }
+        yield return new WaitForSeconds(0.1f);
+        player.TakeDamage(damage);
         yield return new WaitForSeconds(AttackInterval / 2f);
         fight.changeRound();
         lockAttack = false;
