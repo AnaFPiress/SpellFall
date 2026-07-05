@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
     private bool isWalking = false;
     private bool isRunning = false;
 
+
+    // Initializes the player state and references
     void Awake()
     {
         LockPlayer = false;
@@ -50,12 +52,14 @@ public class Player : MonoBehaviour
         pause.gameObject.SetActive(false);
     }
 
+    // Sets up required components and starts background coroutines
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         StartCoroutine(WalkSoundCourotine());
     }
 
+    // Handles player movement, input, stamina, jumping and attacks
     void BodyMovementFunction()
     {
         if (characterController.isGrounded && velocity.y < 0)
@@ -131,6 +135,7 @@ public class Player : MonoBehaviour
         if (mana < max_mana) mana = Mathf.Clamp(mana, 0f, max_mana);
     }
 
+    // Executes the player's magic attack
     public IEnumerator Attack()
     {
         LastDamageTime = Time.time;
@@ -141,6 +146,7 @@ public class Player : MonoBehaviour
         mana -= 10f;
     }
 
+    // Handles the player jump animation and physics
     private IEnumerator Jump()
     {
         yield return new WaitForSeconds(0.8f);
@@ -149,6 +155,7 @@ public class Player : MonoBehaviour
         velocity.y = Mathf.Sqrt(jumpForce * -5f * gravity);
     }
 
+    // Applies damage to the player
     public void TakeDamage(float damage)
     {
         if (vida <= 0) return;
@@ -158,12 +165,14 @@ public class Player : MonoBehaviour
         if (vida <= 0) vida = 0;
     }
 
+    // Plays the damage animation
     private IEnumerator TakeDamageAnimaton()
     {
         yield return new WaitForSeconds(1f);
         if (animator != null) animator.SetTrigger("Damage");
     }
 
+    // Controls the playback of footstep sounds
     private IEnumerator WalkSoundCourotine()
     {
         while (true)
@@ -191,6 +200,7 @@ public class Player : MonoBehaviour
         vida = Mathf.Clamp(vida + amount, 0, max_vida);
     }
 
+    // Picks up a crystal and attaches it to the player
     public void addCrystal(Crystal crystal)
     {
         if (crystal != null && CrystalPos != null && CrystalDrop != null){
@@ -202,6 +212,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Drops the currently carried crystal
     public void dropCrystal()
     {
         if (CrystalPos.transform.childCount == 0) return;
@@ -255,6 +266,7 @@ public class Player : MonoBehaviour
         Debug.Log("isGrounded -> " + characterController.isGrounded);
     }
 
+    // Handles the player death sequence
     private IEnumerator OnDeath()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -268,5 +280,6 @@ public class Player : MonoBehaviour
         if (DeathScreen != null) Instantiate(DeathScreen,Vector3.zero,Quaternion.identity);
     }
 
+    // Resumes the game after being paused
     public void Resume(){ isPaused = false; }
 }

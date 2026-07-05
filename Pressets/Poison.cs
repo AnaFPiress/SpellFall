@@ -12,6 +12,7 @@ public class Poison : MonoBehaviour
     [SerializeField] private float increment = 5f;
 
 
+     // Restores the player's health or mana when the corresponding potion is collected.
     public void OnTriggerEnter(Collider other){
         Player player = other.GetComponent<Player>();
         if (player != null){

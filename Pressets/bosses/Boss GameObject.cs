@@ -25,6 +25,9 @@ public class BossGameObject : MonoBehaviour
         }
     }
 
+
+    // Starts the boss encounter by enabling the combat UI,
+    // locking the player, and switching to the boss battle music.
     private void OnTriggerEnter(Collider other){
         Player player = other.GetComponent<Player>();
         if (player == null) return;
@@ -45,6 +48,7 @@ public class BossGameObject : MonoBehaviour
         }
     }
 
+     // Restores the normal game view when the player leaves the boss trigger area.
     private void OnTriggerExit(Collider other){
         Player player = other.GetComponent<Player>();
         if (player == null) return;

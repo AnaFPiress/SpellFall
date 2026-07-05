@@ -18,6 +18,8 @@ public class PressPlate : MonoBehaviour
         } catch(Exception e ){};
     }
 
+
+    // Detects crystals resting on the pressure plate
     public void OnTriggerStay(Collider other)
     {
         Crystal crystal = other.GetComponent<Crystal>();
@@ -28,6 +30,8 @@ public class PressPlate : MonoBehaviour
         }
     }
 
+
+     // Plays a sound effect when a crystal is placed on the plate
     public void OnTriggerEnter(Collider other)
     {
         Crystal crystal = other.GetComponent<Crystal>();
@@ -38,6 +42,8 @@ public class PressPlate : MonoBehaviour
         }
     }
 
+
+     // Removes the crystal weight when it leaves the pressure plate
     public void OnTriggerExit(Collider other)
     {
         Crystal crystal = other.GetComponent<Crystal>();

@@ -13,6 +13,7 @@ public class Fight : MonoBehaviour
         startTime = Time.time;       
     }
 
+    // Switches the turn between the player and the boss and resets the timer.
     public void changeRound()
     {
         PlayerRound = !PlayerRound;
@@ -20,7 +21,7 @@ public class Fight : MonoBehaviour
     }
 
 
-
+     // Returns true if it is currently the player's turn.
     public bool IsPlayerRound()
     {
         return PlayerRound;
@@ -37,12 +38,14 @@ public class Fight : MonoBehaviour
         }
     }
 
+    // Starts the combat and initializes the turn timer.
     public void StartCombat()
     {
         inCombat = true;
         startTime = Time.time;
     }
 
+    // Returns the remaining time of the current turn.
     public float getTempoRestante()
     {
         return tempo_restante;

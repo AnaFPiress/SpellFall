@@ -68,12 +68,14 @@ public class Goblim : MonoBehaviour
         }
     }
 
+     // Applies damage to the player after the attack animation delay.
     private IEnumerator PlayerDamage()
     {
         yield return new WaitForSeconds(1f);
         if (_player != null) _player.TakeDamage(damage);
     }
 
+    // Reduces the enemy's health and updates the health bar.
     public void ApplyDamage(float damage)
     {
         health -= damage;
@@ -81,6 +83,7 @@ public class Goblim : MonoBehaviour
         if (HealthSlider != null) HealthSlider.value = health;
     }
 
+     // Detects the player or projectile entering the enemy's detection area.
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Player>() != null)
@@ -93,6 +96,7 @@ public class Goblim : MonoBehaviour
         }
     }
 
+    // Stops tracking the player when leaving the detection area.
     public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<Player>() != null)

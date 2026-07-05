@@ -17,6 +17,7 @@ public class Projetil : MonoBehaviour
         return damage;
     }
 
+    // Detects collisions and applies damage to the appropriate target.
     public void OnTriggerEnter(Collider other)
     {
         Debug.Log("[Projetil Boss] Apply damage player -> " + ApplyDamage_Player);

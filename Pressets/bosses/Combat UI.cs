@@ -38,6 +38,7 @@ public class CombatUI : MonoBehaviour
         }
     }
 
+    // Starts the player's attack sequence when the attack button is pressed.
     public void PlayerAttack()
     {
         if (AttackButton != null) AttackButton.interactable = false;
@@ -47,6 +48,7 @@ public class CombatUI : MonoBehaviour
         StartCoroutine(DelayAnimator(bosses));
     }
 
+     // Plays the attack animation, applies damage to the boss and ends the player's turn.
     private IEnumerator DelayAnimator(Bosses bosses)
     {
         StartCoroutine(player.Attack());

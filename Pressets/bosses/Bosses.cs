@@ -36,7 +36,7 @@ private bool lockAttack = false;
         if (_health_slider != null) _health_slider.value = health;
     }
 
-
+     // Executes the boss attack sequence, including animation, projectile spawning and damage.
     private IEnumerator AttackDelay()
     {
         if (animator != null) animator.SetTrigger("Attack");
@@ -53,6 +53,7 @@ private bool lockAttack = false;
         lockAttack = false;
     }
 
+    // Reduces the boss health and triggers the appropriate animation.
     public void TakeDamage(float damage)
     {
         health = Mathf.Clamp(health - damage,0,health);
@@ -69,5 +70,6 @@ private bool lockAttack = false;
         }
     }
 
+    // Returns whether the boss has been defeated.
     public bool isDead(){ return Dead; }
 }

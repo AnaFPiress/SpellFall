@@ -27,6 +27,7 @@ public class PlatesPuzzle : MonoBehaviour
         PuzzleSignal();
     }
 
+     // Updates the puzzle indicators and opens the gate when conditions are met
     public void PuzzleSignal(){
         foreach (PuzzleCondition condition in conditions){
             if (CheckConditions(condition))
@@ -40,6 +41,8 @@ public class PlatesPuzzle : MonoBehaviour
         }
     }
 
+
+    // Evaluates whether a puzzle condition is satisfied
     private bool CheckConditions(PuzzleCondition condition)
     {
         float weight1 = condition.plate1.getWeight();
@@ -60,6 +63,8 @@ public class PlatesPuzzle : MonoBehaviour
         return true;
     }
 
+
+    // Checks if all puzzle conditions are satisfied
     public bool allCondition()
     {
         foreach (PuzzleCondition condition in conditions){

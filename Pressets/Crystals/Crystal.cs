@@ -9,6 +9,7 @@ public class Crystal : MonoBehaviour
     Player player;
     public bool isCarried = false;
 
+    // Handles player interaction and updates the crystal state
     void Update()
     {
         if (Keyboard.current[crystalKey].wasPressedThisFrame && player != null && !isCarried){
@@ -26,14 +27,17 @@ public class Crystal : MonoBehaviour
         return weight;
     }
 
+    // Sets the crystal as being carried by the player
     public void CrystalTransport(){
         isCarried = true;
     }
 
+    // Drops the crystal
     public void CrystalDrop(){
         isCarried = false;
     }
 
+    // Detects when the player enters the interaction area
     public void OnTriggerEnter(Collider other)
     {
         Player player = other.GetComponent<Player>();
@@ -44,6 +48,7 @@ public class Crystal : MonoBehaviour
         }
     }
 
+    // Detects when the player leaves the interaction area
     public void OnTriggerExit(Collider other)
     {
         Player player = other.GetComponent<Player>();
